@@ -5,15 +5,21 @@ const Todo = () => {
 
   const [taskList, setTaskList] = useState([]);
   const [task, setTask] = useState("");
+  const [id, setId] = useState(0);
 
   const addTask = () => {
-      setTaskList([...taskList, task]);
+      setId(id+1);
+      setTaskList([...taskList, {id : id, task : task}]);
   }
 
-  const removeTask = () => {
+  const removeTask = (e) => {
       setTaskList(taskList.filter((element, index, array)=>{
-        return index!=array.length-1;
+        return element.id != Number(e.target.id);
       }));          
+  }
+
+  const resetId = () => {
+    setId(1);
   }
 
   return (
@@ -21,7 +27,9 @@ const Todo = () => {
           {taskList.map((element)=>{
             return(
             <div>
-              {element}
+              {element.id}
+              {element.task}
+              {<button id = {element.id} onClick = {removeTask}>Remove</button>}
             </div>
             )
           })}
@@ -31,7 +39,7 @@ const Todo = () => {
           }}/>
 
           <button onClick = {addTask}>Add</button>
-          <button onClick = {removeTask}>Remove</button>
+          <button onClick = {resetId}>ResetId</button>
       </>
   )
 }
