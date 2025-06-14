@@ -45,8 +45,3 @@ const Todo = () => {
 }
 
 export default Todo;
-
-
-// When your function uses {} (a function body), you must explicitly write return to return anything, including JSX.
-
-// When returning multi-line JSX, always wrap it in parentheses () to avoid syntax errors and improve readability.
